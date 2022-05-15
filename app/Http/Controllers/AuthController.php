@@ -43,7 +43,7 @@ class AuthController extends Controller
         return response($response, 201);
     }
 
-    private function tokenResponse($user){
+    protected function tokenResponse($user){
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return $response = [

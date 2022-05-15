@@ -9,34 +9,74 @@ class PostController extends Controller
 {
     public function index()
     {
-        return Post::all();
+        $posts = Post::all();
+        return $posts;
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'user_id' => 'required',
             'group_id' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'image' => 'file|image|mimes:jpeg,png,gif,jpg|max:2048'
         ]);
 
-        return Post::create($request->all());
+        if ($request->file('image')) {
+            $imagePath = $this->storeImage($request);
+            $data['image_path'] = $imagePath;
+        }
+
+        $post = Post::create($data);
+        if (!$post) {
+            return response()->json(['message' => 'internal server error'], 500);
+        }
+
+        return $post;
+    }
+
+    protected function storeImage(Request $request)
+    {
+        $path = $request->file('image')->store('public/Images/Posts');
+        return substr($path, strlen('public/'));
     }
 
     public function show($id)
     {
-        return Post::find($id);
+        $post = Post::find($id);
+
+        if (!$post) {
+            return response()->json(['message' => 'not found'], 404);
+        }
+
+        return $post;
     }
 
     public function update(Request $request, $id)
     {
-        $product = Post::find($id);
-        $product->update($request->all());
-        return $product;
+        $request->validate([
+            'user_id' => 'required',
+            'group_id' => 'required',
+            'content' => 'required',
+            'image' => 'file|image|mimes:jpeg,png,gif,jpg|max:2048'
+        ]);
+
+        $post = Post::find($id);
+        if (!$post) {
+            return response()->json(['message' => 'not found'], 404);
+        }
+        $post->update($request->all());
+
+        return $post;
     }
 
     public function destroy($id)
     {
-        return Post::destroy($id);
+        $result = Post::destroy($id);
+        if ($result < 1) {
+            return response()->json(['message' => 'bad request'], 400);
+        }
+
+        return response()->json(['message' => 'deleted'], 200);
     }
 }
