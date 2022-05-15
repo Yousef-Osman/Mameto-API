@@ -49,7 +49,33 @@ class PostController extends Controller
             return response()->json(['message' => 'not found'], 404);
         }
 
+        $image_path = storage_path().'/app/public/'.$post->image_path;
+
+        if ($post->image_path && file_exists($image_path)) {
+            $fileData = file_get_contents($image_path);
+            $fileEncode = base64_encode($fileData);
+            $post->image = $fileEncode;
+        }
+
         return $post;
+    }
+
+    //this method is experimental and has no route (add it in api routes)
+    public function getimage($id)
+    {
+        $post = Post::find($id);
+
+        if (!$post) {
+            return response()->json(['message' => 'not found'], 404);
+        }
+
+        $image_path = storage_path().'/app/public/'.$post->image_path;
+
+        if (!$post->image_path || !file_exists($image_path)) {
+            return response()->json(['message' => 'not found'], 404);
+        }
+
+    	return response()->download($image_path);
     }
 
     public function update(Request $request, $id)
