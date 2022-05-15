@@ -65,7 +65,6 @@ class CommentController extends Controller
         $Comment = Comment::find($id);
         $user_id = $request->user()->id;
 
-        //if comment doesn't exsist or doesn't belong to the sender retrun 404
         if (!$Comment || $Comment['user_id'] != $user_id) {
             return response()->json(['message' => 'not found'], 404);
         }
