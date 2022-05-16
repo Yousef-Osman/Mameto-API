@@ -13,9 +13,36 @@ class CommentSeeder extends Seeder
     {
         DB::table('comments')->insert([
             
+            'user_id' => 3,
+            'post_id' => 1,
+            'content' => '1 كومنت تجريبى',
+            'created_at' => Carbon::parse('2022-05-15'),
+            'updated_at' => Carbon::parse('2022-05-15'),
+        ]);
+
+        DB::table('comments')->insert([
+            
             'user_id' => 2,
             'post_id' => 1,
-            'content' => 'كومنت تجريبى',
+            'content' => '2 كومنت تجريبى',
+            'created_at' => Carbon::parse('2022-05-15'),
+            'updated_at' => Carbon::parse('2022-05-15'),
+        ]);
+
+        DB::table('comments')->insert([
+            
+            'user_id' => 2,
+            'post_id' => 3,
+            'content' => '3 كومنت تجريبى',
+            'created_at' => Carbon::parse('2022-05-15'),
+            'updated_at' => Carbon::parse('2022-05-15'),
+        ]);
+
+        DB::table('comments')->insert([
+            
+            'user_id' => 3,
+            'post_id' => 2,
+            'content' => '3 كومنت تجريبى',
             'created_at' => Carbon::parse('2022-05-15'),
             'updated_at' => Carbon::parse('2022-05-15'),
         ]);
