@@ -15,7 +15,7 @@ class PostController extends Controller
 
         //get posts with comments for a certain group
         $group_id = $request->group_id;
-        $posts = Post::where('group_id', $group_id)->with(['comments'])
+        $posts = Post::where('group_id', $group_id)->with(['user:id,first_name,last_name','comments'])
             ->orderBy('created_at', 'desc')->get();
 
         return $posts;
@@ -53,7 +53,7 @@ class PostController extends Controller
     public function show($id)
     {
         //get posts with comments for a certain group
-        $post = Post::where('id',$id)->with(['comments'])->first();
+        $post = Post::where('id',$id)->with(['user:id,first_name,last_name','comments'])->first();
 
         if (!$post) {
             return response()->json(['message' => 'not found'], 404);
