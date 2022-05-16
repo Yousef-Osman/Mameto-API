@@ -17,12 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone');
-            $table->integer('open_time');
-            $table->integer('close_time');
-            $table->time('child_min_age');
-            $table->time('child_max_age');
-            $table->string('address');
-            $table->string('city');
+            $table->time('open_time')->nullable();
+            $table->time('close_time')->nullable();
+            $table->integer('child_min_age')->nullable();
+            $table->integer('child_max_age')->nullable();
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
             $table->string('owner_name');
             $table->string('owner_phone');
             $table->timestamps();

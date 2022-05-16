@@ -12,7 +12,6 @@ class CommentSeeder extends Seeder
     public function run()
     {
         DB::table('comments')->insert([
-            
             'user_id' => 3,
             'post_id' => 1,
             'content' => '1 كومنت تجريبى',
@@ -21,7 +20,6 @@ class CommentSeeder extends Seeder
         ]);
 
         DB::table('comments')->insert([
-            
             'user_id' => 2,
             'post_id' => 1,
             'content' => '2 كومنت تجريبى',
@@ -30,7 +28,6 @@ class CommentSeeder extends Seeder
         ]);
 
         DB::table('comments')->insert([
-            
             'user_id' => 2,
             'post_id' => 3,
             'content' => '3 كومنت تجريبى',
@@ -39,10 +36,9 @@ class CommentSeeder extends Seeder
         ]);
 
         DB::table('comments')->insert([
-            
             'user_id' => 3,
             'post_id' => 2,
-            'content' => '3 كومنت تجريبى',
+            'content' => '4 كومنت تجريبى',
             'created_at' => Carbon::parse('2022-05-15'),
             'updated_at' => Carbon::parse('2022-05-15'),
         ]);

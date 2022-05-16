@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('speciallists', function (Blueprint $table) {
+        Schema::create('specialists', function (Blueprint $table) {
             $table->id();
             $table->string('phone');
             $table->string('job_name');
-            $table->string('bio');
-            $table->string('workplace');
-            $table->string('id_photo');
-            $table->string('national_id');
-            $table->string('national_id_photo');
+            $table->string('bio')->nullable();
+            $table->string('workplace')->nullable();
+            $table->string('id_photo')->nullable();
+            $table->string('national_id')->nullable();
+            $table->string('national_id_photo')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('speciallists');
+        Schema::dropIfExists('specialists');
     }
 };

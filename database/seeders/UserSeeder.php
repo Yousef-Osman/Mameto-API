@@ -24,8 +24,8 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'first_name' => 'Maha',
-            'last_name' => 'Ahmed',
+            'first_name' => 'Lara',
+            'last_name' => 'Akram',
             'email' => 'user2@email.com',
             'password' => Hash::make('123456'),
             'role_id' => 2,
@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'first_name' => 'Soha',
+            'first_name' => 'Ramy',
             'last_name' => 'Ashraf',
             'email' => 'user3@email.com',
             'password' => Hash::make('password'),

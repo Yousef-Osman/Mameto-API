@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SpeciallistController extends Controller
+class SpecialistController extends Controller
 {
     //
 }
